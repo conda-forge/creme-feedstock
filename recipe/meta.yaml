@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/creme-ml/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: "109e308070e023825efe0b3eb6f94898e59a24ce52da259828b2eb473dfed4c6"
+  sha256: "8692058c13ccf4f999be5a42c9fd1d759986b044a53b431fcf0edd359364026d"
 
 build:
   noarch: python

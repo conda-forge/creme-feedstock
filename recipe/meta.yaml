@@ -31,6 +31,7 @@ requirements:
 test:
   imports:
     - creme
+    - creme.anomaly
     - creme.cluster
     - creme.compat
     - creme.compose
@@ -44,9 +45,9 @@ test:
     - creme.multiclass
     - creme.multioutput
     - creme.naive_bayes
+    - creme.neighbors
     - creme.optim
     - creme.optim.losses
-    - creme.plot
     - creme.preprocessing
     - creme.proba
     - creme.reco

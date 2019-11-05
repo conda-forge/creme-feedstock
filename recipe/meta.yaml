@@ -10,11 +10,12 @@ source:
   sha256: "6eb8eae0f3c2f876fbaa1115f68d67e35bb7968ad8e5c860c99fde76fc8a0d84"
 
 build:
-  noarch: python
   number: 0
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
+  build:
+    - {{ compiler('c') }}
   host:
     - pip
     - python >=3.6

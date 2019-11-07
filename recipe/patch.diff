@@ -1,5 +1,5 @@
 diff --git a/Users/agcopenhaver/Documents/creme-0.4.1/setup.py b/Users/agcopenhaver/Downloads/setup.py
-index 2b47a4f..e9ddb8e 100644
+index 2b47a4f..bc7c24b 100644
 --- a/Users/agcopenhaver/Documents/creme-0.4.1/setup.py
 +++ b/Users/agcopenhaver/Downloads/setup.py
 @@ -7,6 +7,7 @@
@@ -91,7 +91,7 @@ index 2b47a4f..e9ddb8e 100644
 +        },
 +        ext_modules=cythonize([Extension('*', sources=['**/*.pyx'])])
 +    )
-+if system.platform() != 'Windows':
++if platform.system() != 'Windows':
 +    setup(
 +        name=NAME,
 +        version=about['__version__'],

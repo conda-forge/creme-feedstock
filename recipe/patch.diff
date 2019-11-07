@@ -1,5 +1,5 @@
 diff --git a/Users/agcopenhaver/Documents/creme-0.4.1/setup.py b/Users/agcopenhaver/Downloads/setup.py
-index 2b47a4f..bc7c24b 100644
+index 2b47a4f..77097e6 100644
 --- a/Users/agcopenhaver/Documents/creme-0.4.1/setup.py
 +++ b/Users/agcopenhaver/Downloads/setup.py
 @@ -7,6 +7,7 @@
@@ -10,8 +10,83 @@ index 2b47a4f..bc7c24b 100644
  from shutil import rmtree
  
  from setuptools import Extension, find_packages, setup, Command
-@@ -111,41 +112,81 @@ class UploadCommand(Command):
+@@ -72,80 +73,76 @@ if not VERSION:
+ else:
+     about['__version__'] = VERSION
  
+-
+-class UploadCommand(Command):
+-    """Support setup.py upload."""
+-
+-    description = 'Build and publish the package.'
+-    user_options = []
+-
+-    @staticmethod
+-    def status(s):
+-        """Prints things in bold."""
+-        print('\033[1m{0}\033[0m'.format(s))
+-
+-    def initialize_options(self):
+-        pass
+-
+-    def finalize_options(self):
+-        pass
+-
+-    def run(self):
+-        try:
+-            self.status('Removing previous builds…')
+-            rmtree(os.path.join(here, 'dist'))
+-        except OSError:
+-            pass
+-
+-        self.status('Building Source and Wheel (universal) distribution…')
+-        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+-
+-        self.status('Uploading the package to PyPi via Twine…')
+-        os.system('twine upload dist/*')
+-
+-        #self.status('Pushing git tags…')
+-        #os.system('git tag v{0}'.format(about['__version__']))
+-        #os.system('git push --tags')
+-
+-        sys.exit()
+-
++# Where the magic happens:
++if platform.system() == 'Windows':
++    setup(
++        name=NAME,
++        version=about['__version__'],
++        description=DESCRIPTION,
++        long_description=long_description,
++        long_description_content_type=LONG_DESCRIPTION_CONTENT_TYPE,
++        author=AUTHOR,
++        author_email=EMAIL,
++        python_requires=REQUIRES_PYTHON,
++        url=URL,
++        packages=find_packages(exclude=('tests',)),
++        # If your package is a single module, use this instead of 'packages':
++        # py_modules=['mypackage'],
++
++        # entry_points={
++        #     'console_scripts': ['mycli=mymodule:cli'],
++        # },
++        install_requires=base_packages,
++        extras_require={'dev': dev_packages, 'docs': docs_packages},
++        include_package_data=True,
++        license='BSD-3',
++        classifiers=[
++            # Trove classifiers
++            # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
++            'License :: OSI Approved :: BSD License',
++            'Programming Language :: Python',
++            'Programming Language :: Python :: 3',
++            'Programming Language :: Python :: 3.6',
++            'Programming Language :: Python :: 3.7',
++            'Programming Language :: Python :: Implementation :: CPython',
++            'Programming Language :: Python :: Implementation :: PyPy'
++        ],
++        ext_modules=cythonize([Extension('*', sources=['**/*.pyx'], libraries=['m'])])
++    )
  
  # Where the magic happens:
 -setup(
@@ -52,45 +127,6 @@ index 2b47a4f..bc7c24b 100644
 -    },
 -    ext_modules=cythonize([Extension('*', sources=['**/*.pyx'], libraries=['m'])])
 -)
-+if platform.system() == 'Windows':
-+    setup(
-+        name=NAME,
-+        version=about['__version__'],
-+        description=DESCRIPTION,
-+        long_description=long_description,
-+        long_description_content_type=LONG_DESCRIPTION_CONTENT_TYPE,
-+        author=AUTHOR,
-+        author_email=EMAIL,
-+        python_requires=REQUIRES_PYTHON,
-+        url=URL,
-+        packages=find_packages(exclude=('tests',)),
-+        # If your package is a single module, use this instead of 'packages':
-+        # py_modules=['mypackage'],
-+
-+        # entry_points={
-+        #     'console_scripts': ['mycli=mymodule:cli'],
-+        # },
-+        install_requires=base_packages,
-+        extras_require={'dev': dev_packages, 'docs': docs_packages},
-+        include_package_data=True,
-+        license='BSD-3',
-+        classifiers=[
-+            # Trove classifiers
-+            # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-+            'License :: OSI Approved :: BSD License',
-+            'Programming Language :: Python',
-+            'Programming Language :: Python :: 3',
-+            'Programming Language :: Python :: 3.6',
-+            'Programming Language :: Python :: 3.7',
-+            'Programming Language :: Python :: Implementation :: CPython',
-+            'Programming Language :: Python :: Implementation :: PyPy'
-+        ],
-+        # $ setup.py publish support.
-+        cmdclass={
-+            'upload': UploadCommand,
-+        },
-+        ext_modules=cythonize([Extension('*', sources=['**/*.pyx'])])
-+    )
 +if platform.system() != 'Windows':
 +    setup(
 +        name=NAME,
@@ -124,9 +160,5 @@ index 2b47a4f..bc7c24b 100644
 +            'Programming Language :: Python :: Implementation :: CPython',
 +            'Programming Language :: Python :: Implementation :: PyPy'
 +        ],
-+        # $ setup.py publish support.
-+        cmdclass={
-+            'upload': UploadCommand,
-+        },
 +        ext_modules=cythonize([Extension('*', sources=['**/*.pyx'], libraries=['m'])])
 +    )

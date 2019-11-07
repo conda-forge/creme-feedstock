@@ -1,19 +1,19 @@
-diff --git a/Users/agcopenhaver/Documents/creme-0.4.1/setup.py b/Users/agcopenhaver/Downloads/setup.py
+diff --git a/setup.py b/setup.py
 index 2b47a4f..8b3bc2e 100644
---- a/Users/agcopenhaver/Documents/creme-0.4.1/setup.py
-+++ b/Users/agcopenhaver/Downloads/setup.py
+--- a/setup.py
++++ b/setup.py
 @@ -7,6 +7,7 @@
  import io
  import os
  import sys
 +import platform
  from shutil import rmtree
- 
+
  from setuptools import Extension, find_packages, setup, Command
 @@ -73,79 +74,74 @@ else:
      about['__version__'] = VERSION
- 
- 
+
+
 -class UploadCommand(Command):
 -    """Support setup.py upload."""
 -

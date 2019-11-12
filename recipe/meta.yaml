@@ -1,5 +1,5 @@
 {% set name = "creme" %}
-{% set version = "0.4.2" %}
+{% set version = "0.4.3" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/creme-ml/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: "8dcb0b89e07643341bd127efaa983d26bb537b7c2038d52019e231d03f1bad58"
+  sha256: "cedfd15534004f435e50e5d39c3c609510439dcf97773ea9372c4246ca9a12ce"
   patches:
     # This is to make it build for windows.
     - patch.diff

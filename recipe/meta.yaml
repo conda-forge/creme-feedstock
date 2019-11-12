@@ -8,9 +8,6 @@ package:
 source:
   url: https://github.com/creme-ml/{{ name }}/archive/{{ version }}.tar.gz
   sha256: "57e247ead599e147bdda07a42d5457fd4e412376b6d013084ee870c8be884f06"
-  patches:
-    # This is to make it build for windows.
-    - patch.diff
 
 build:
   skip: true  # [py<36]

@@ -1,17 +1,17 @@
 {% set name = "creme" %}
-{% set version = "0.5.1" %}
+{% set version = "0.6.1" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
   url: https://github.com/creme-ml/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: c9b199fc97bd2631066645728634335d1dc4f7066eddb1c6f2c57b2769b030fc
+  sha256: c0219a3197c7c1a988f95b9cb2c36e554a468339472747400dd1346b0ef1af5a
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
@@ -27,6 +27,7 @@ requirements:
     - scipy >=1.3.0
     - cython >=0.29.6
     - mmh3
+    - pandas
 
 test:
   imports:

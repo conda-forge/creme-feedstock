@@ -27,6 +27,7 @@ requirements:
     - scipy >=1.3.0
     - cython >=0.29.6
     - mmh3
+    - pandas
 
 test:
   imports:

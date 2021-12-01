@@ -1,5 +1,5 @@
 {% set name = "creme" %}
-{% set version = "0.6.1" %}
+{% set version = "0.9.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/creme-ml/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: c0219a3197c7c1a988f95b9cb2c36e554a468339472747400dd1346b0ef1af5a
+  sha256: 5ae151ec497a56de984c1a90c679746575135b888eb1567e6a367426e87b5985
 
 build:
-  number: 2
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -57,13 +57,13 @@ test:
     - creme.utils
 
 about:
-  home: "https://github.com/creme-ml/creme"
+  home: https://github.com/creme-ml/creme
   license: BSD-3-Clause
-  license_family: "BSD"
-  license_file: "LICENSE"
-  summary: "Incremental machine learning in Python"
-  doc_url: "https://creme-ml.github.io"
-  dev_url: "https://github.com/creme-ml/creme"
+  license_family: BSD
+  license_file: LICENSE
+  summary: Incremental machine learning in Python
+  doc_url: https://creme-ml.github.io
+  dev_url: https://github.com/creme-ml/creme
 
 extra:
   recipe-maintainers:

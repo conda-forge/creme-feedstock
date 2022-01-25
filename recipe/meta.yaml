@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/creme-ml/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: c0219a3197c7c1a988f95b9cb2c36e554a468339472747400dd1346b0ef1af5a
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 676c7bdc8d450d4ca96e3dd471c10e5125242108be9f857fd46954d0916c70bb
 
 build:
-  number: 2
+  number: 3
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -67,6 +67,4 @@ about:
 
 extra:
   recipe-maintainers:
-    - agcopenhaver
-    - rluria14
-    - oblute
+    - mxr-conda
